@@ -1,0 +1,18 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'image_processing/style.css' %}">
+
+{% if NNs %}
+
+<ul>
+{% for nn in NNs %}
+<!-- <img src="{{ nn.thumbnail.path }}" alt="{{ nn.thumbnail.path }}"> -->
+<li>{{ nn.name }}
+    <br><img src="{{ nn.thumbnail.url }}" alt="{{ nn.thumbail.url }}" height=300 width=300>
+</li>
+{% endfor %}
+</ul>
+
+{% else %}
+<div>NNs haven't been created yet</div>
+{% endif %}

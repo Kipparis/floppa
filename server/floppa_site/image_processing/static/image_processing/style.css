@@ -1,0 +1,29 @@
+ul {
+    list-style: circle;
+}
+
+p {
+    color: white;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: #de68b9;
+}
+
+b {
+    font-size: 20;
+}
+
+div.floppa-div {
+    height: 500px;
+    width: auto;
+    background: white url("images/floppa_in_bath.jpg") no-repeat;
+}
+
+body {
+    color: white;
+    font-size: 40;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(85,175,186,1) 78%, rgba(6,205,245,1) 100%);
+}

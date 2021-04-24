@@ -1,0 +1,24 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'image_processing/style.css' %}">
+
+{% if user.is_authenticated %}
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+{% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+{% endif %}
+
+{% if categories %}
+<ul>
+{% for category in categories %}
+<li>floppa <a href="{% url 'image_processing:category' category.pk %}">
+        {{category.name}}*
+</a></li>
+{% endfor %}
+</ul>
+{% else %}
+    <p>no categories*</p>
+{% endif %}
+
+<img src="{% static 'image_processing/images/floppa_in_bath.jpg' %}" width=100%>
