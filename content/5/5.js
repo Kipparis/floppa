@@ -1,4 +1,9 @@
-make_base();
+base_image_name = '../pic/cat.jpg';
+base_image = new Image();
+base_image.src = base_image_name;
+
+cross = new Image();
+cross.src = '../pic/cross.png';
 
 function make_base() {
     var canvas = document.getElementById('canvas'),
@@ -11,29 +16,17 @@ function make_base() {
         canvas.height = base_image.height;
         document.getElementById('pic_box').style.height = base_image.height + 'px';
         context.drawImage(base_image, 0, 0);
-        // console.log(base_image.width, base_image.height);
-        // console.log(document.getElementById('pic_box').style.width, document.getElementById('pic_box').style.height);
     }
 }
 
-
-
+make_base();
 let isDrawing = false;
 let x = 0;
 let y = 0;
 let mode = 'to_draw'
-
 var razmetka = []
-
 const myPics = document.getElementById('canvas');
 const context = myPics.getContext('2d');
-
-base_image_name = '../pic/cat.jpg';
-base_image = new Image();
-base_image.src = base_image_name;
-
-cross = new Image();
-cross.src = '../pic/cross.png';
 
 myPics.addEventListener('mousedown', e => {
     if (mode === 'to_draw') {
@@ -65,7 +58,6 @@ myPics.addEventListener('mousemove', e => {
 
 window.addEventListener('mouseup', e => {
     if (isDrawing === true) {
-        // drawLine(context, x, y, e.offsetX, e.offsetY);
         isDrawing = false;
         tag = document.getElementById('defect_option').value;
         if (tag != '') {
@@ -97,23 +89,14 @@ window.addEventListener('mouseup', e => {
     }
 });
 
-function to_draw() {
-    mode = 'to_draw';
-    console.log(mode)
-}
+function to_draw() {mode = 'to_draw';}
 
-function to_delete() {
-    mode = 'to_delete';
-    console.log(mode)
-}
+function to_delete() {mode = 'to_delete';}
 
 function to_save() {
     var json = JSON.stringify([base_image_name, razmetka])
-    // saveAs(json, base_image_name+'.json');
-    //
     json = [json];
     var blob1 = new Blob(json, { type: "text/plain;charset=utf-8" });
-
     var url = window.URL || window.webkitURL;
     link = url.createObjectURL(blob1);
     var a = document.createElement("a");
@@ -123,63 +106,3 @@ function to_save() {
     a.click();
     document.body.removeChild(a);
 }
-
-// var json = JSON.stringify(customers);
-//
-// //Convert JSON string to BLOB.
-// json = [json];
-// var blob1 = new Blob(json, { type: "text/plain;charset=utf-8" });
-//
-// //Check the Browser.
-// var isIE = false || !!document.documentMode;
-// if (isIE) {
-//     window.navigator.msSaveBlob(blob1, "Customers.txt");
-// } else {
-//     var url = window.URL || window.webkitURL;
-//     link = url.createObjectURL(blob1);
-//     var a = document.createElement("a");
-//     a.download = "Customers.txt";
-//     a.href = link;
-//     document.body.appendChild(a);
-//     a.click();
-//     document.body.removeChild(a);
-// }
-
-// function drawLine(context, x1, y1, x2, y2) {
-//     context.beginPath();
-//     context.strokeStyle = 'black';
-//     context.lineWidth = 1;
-//     context.moveTo(x1, y1);
-//     context.lineTo(x2, y2);
-//     context.stroke();
-//     context.closePath();
-// }
-
-
-// compress(e) {
-//   const width = 500;
-//   const height = 300;
-//   const fileName = e.target.files[0].name;
-//   const reader = new FileReader();
-//
-//   reader.readAsDataURL(e.target.files[0]);
-//   reader.onload = event => {
-//     const img = new Image();
-//     img.src = event.target.result;
-//     img.onload = () => {
-//       const elem = document.createElement('canvas');
-//       elem.width = width;
-//       elem.height = height;
-//       const ctx = elem.getContext('2d');
-//       // img.width и img.height будет содержать оригинальные размеры
-//       ctx.drawImage(img, 0, 0, width, height);
-//       ctx.canvas.toBlob((blob) => {
-//         const file = new File([blob], fileName, {
-//           type: 'image/jpeg',
-//           lastModified: Date.now()
-//         });
-//       }, 'image/jpeg', 1);
-//     };
-//     reader.onerror = error => console.log(error);
-//   };
-// }
