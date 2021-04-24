@@ -23,15 +23,29 @@
                 <div class="Column center_b">
                     <input id="b1" type="button" class="knopka01" value="Назад" onclick=go_back()></input>
                 </div>
-                <div class="Column center_b"></div>
-                <div class="Column center_b"></div>
-                <div class="Column center_b"></div>
-                <div class="Column center_b"></div>
+                <div class="Column center_b">
+                    <select id='defect_option'>
+                        <option>Трещина</option>
+                        <option>Разлом</option>
+                        <option>Перелив</option>
+                    </select>
+                </div>
+                <div class="Column center_b">
+                    <input id="b2" type="button" class="knopka01" onclick="to_draw()" value="Pисовать"></input>
+                </div>
+                <div class="Column center_b">
+                    <input id="b2" type="button" class="knopka01" onclick="to_delete()" value="Удалить"></input>
+                </div>
+                <div class="Column center_b">
+                    <input id="b2" type="button" class="knopka01" onclick="to_save()" value="Сохранить"></input>
+                </div>
             </div>
 
-            <div class="pic_box" style="width:100%; height:300px">
+            <div id="pic_box" class="pic_box" style="width:100%; height:600px">
                 <!-- canvas here -->
-                <x class="t_monts">canvas here</x>
+                <canvas id="canvas" width="100" height="100">
+                    <p>Ваш браузер не поддерживает рисование.</p>
+                </canvas>
             </div>
 
             <div class="Row" style="height:40px">
@@ -80,5 +94,6 @@
                 console.log('zoom_out')
             }
         </script>
+        <script src="5.js"></script>
     </body>
 </html>

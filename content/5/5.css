@@ -25,10 +25,20 @@ body {
     /* background-color: white; /*Optional*/ */
 }
 
-/* div {
+div {
     border: 1px solid black;
     padding: 3px;
-} */
+}
+
+canvas {
+    border:1px solid #000000;
+}
+
+.pic_box {
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+}
 
 .Floppa_title {
     font-family: 'Montserrat', sans-serif;
@@ -84,6 +94,21 @@ input[type=text] {
 /* input[type=text]:focus {
   background-color: lightblue;
 } */
+
+select {
+    display: block;
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    font-size: 20px;
+    text-decoration: none;
+    text-shadow: 0 1px rgba(255,255,255,.2), 0 -1px rgba(0,0,0,.8);
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: #195a5e;
+    color: white;
+}
 
 .center_b {
     /* vertical-align: middle; */
