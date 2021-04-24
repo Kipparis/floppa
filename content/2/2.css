@@ -7,21 +7,18 @@ body {
 
 .Row {
     display: table;
-    width: 100%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    /* border-spacing: 10px; /*Optional*/ */
+    width: 100%;
+    table-layout: fixed;
 }
 
 .Column {
     display: table-cell;
-    /* background-color: white; /*Optional*/ */
 }
 
 /* div {
     border: 1px solid black;
     padding: 5px;
 } */
-
 
 .Floppa_title {
     font-family: 'Montserrat', sans-serif;
@@ -51,7 +48,6 @@ body {
 }
 
 input[type=text] {
-    /* text-align: center; */
     border-radius: 5px;
     display: block;
     margin: auto;
@@ -65,11 +61,7 @@ input[type=text] {
     border-width: thin;
 }
 
-/* input[type=text]:focus {
-  background-color: lightblue;
-} */
-
-.knopka01 {
+.b_style1 {
   display: block;
   width: 80%;
   height: 30%;
@@ -82,33 +74,10 @@ input[type=text] {
   border: none;
   border-radius: 10px;
   background: #195a5e;
-  /* box-shadow: inset rgba(0,0,0,.6) 0 -2px 5px, inset rgba(252,255,255,.7) 0 2px 5px, rgba(0,0,0,.8) 0 2px 5px -1px; */
   color: white;
 }
-.knopka02 {
-  /* display: flex; */
-  position:relative;
-  top:50%;
-  left:57%;
-  width: 25%;
-  height: 50%;
-  font-size: 20px;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-  text-shadow: 0 1px rgba(255,255,255,.2), 0 -1px rgba(0,0,0,.8);
-  outline: none;
-  border: none;
-  border-radius: 10px;
-  background: #195a5e;
-  /* box-shadow: inset rgba(0,0,0,.6) 0 -2px 5px, inset rgba(252,255,255,.7) 0 2px 5px, rgba(0,0,0,.8) 0 2px 5px -1px; */
-  color: white;
-}
-/* .knopka01:hover {
-  color: #195a5e;
-  cursor: pointer;
-} */
-.knopka01:active, .knopka02:active {
+
+.b_style1:active {
   padding-bottom: 1px;
   box-shadow:
    inset rgba(0,0,0,1) 0 1px 3px,
