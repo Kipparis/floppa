@@ -7,9 +7,8 @@ body {
 
 .Row {
     display: table;
-    width: 100%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    /* border-spacing: 10px; /*Optional*/
+    width: 100%;
+    table-layout: fixed;
 }
 
 .Column {
@@ -17,11 +16,6 @@ body {
 }
 
 /* div {
-    border: 1px solid black;
-    padding: 5px;
-} */
-
-/* .pre_div {
     border: 1px solid black;
     padding: 5px;
 } */
@@ -53,8 +47,7 @@ body {
     color: #195a5e;
 }
 
-input[type=text] {
-    /* text-align: center; */
+input[type=text],input[type=password] {
     border-radius: 5px;
     display: block;
     margin: auto;
@@ -68,39 +61,29 @@ input[type=text] {
     border-width: thin;
 }
 
-/* input[type=text]:focus {
-  background-color: lightblue;
-} */
-
-.knopka01 {
-  display: block;
-  display: block;
-  margin: auto;
-  width: 150px;
-  height: 40px;
-  line-height: 30px;
-  font-size: 20px;
-  text-align: center;
-  text-decoration: none;
-  /* text-shadow: 0 1px rgba(255,255,255,.2), 0 -1px rgba(0,0,0,.8); */
-  outline: none;
-  border: none;
-  border-radius: 10px;
-  background: #195a5e;
-  /* box-shadow: inset rgba(0,0,0,.6) 0 -2px 5px, inset rgba(252,255,255,.7) 0 2px 5px, rgba(0,0,0,.8) 0 2px 5px -1px; */
-  color: white;
-  /* user-select: none; */
+.b_style1 {
+    display: block;
+    display: block;
+    margin: auto;
+    width: 150px;
+    height: 40px;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: #195a5e;
+    color: white;
 }
-/* .knopka01:hover {
-  color: #195a5e;
-  cursor: pointer;
-} */
-.knopka01:active {
-  padding-bottom: 1px;
-  box-shadow:
-   inset rgba(0,0,0,1) 0 1px 3px,
-   inset rgba(0,0,0,.6) 0 -2px 5px,
-   inset rgba(252,255,255,.7) 0 2px 5px,
-   0 1px rgba(255,255,255,.08);
-  color: rgb(128,207,214);
+
+.b_style1:active {
+    padding-bottom: 1px;
+    box-shadow:
+    inset rgba(0,0,0,1) 0 1px 3px,
+    inset rgba(0,0,0,.6) 0 -2px 5px,
+    inset rgba(252,255,255,.7) 0 2px 5px,
+    0 1px rgba(255,255,255,.08);
+    color: rgb(128,207,214);
 }

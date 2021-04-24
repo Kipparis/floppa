@@ -36,37 +36,37 @@
                 </div>
                 <div class="Column"></div>
             </div>
-
             <div class="Row" style="height:20px"></div>
-
-            <div class="Row" style="height:40px">
-                <div class="Column" style="text-align:left; width:25%"></div>
-                <div class="Column Small_text">
-                    <input type="text"></input>
-                </div>
-                <div class="Column"></div>
-            </div>
-
-
-            <div class="Row" style="height:40px">
-                <div class="Column" style="text-align:left; width:25%"></div>
-                <div class="Column Small_text">
-                    <input type="text"></input>
-                </div>
-                <div class="Column"></div>
-            </div>
-
-            <div class="Row" style="height:40px">
-                <div class="Column" style="text-align:left; width:25%"></div>
+            <form action="#" method="#">
+                <div class="Row" style="height:40px">
+                    <div class="Column" style="text-align:left; width:25%"></div>
                     <div class="Column Small_text">
-                        <input id ="enter_b"type="button" class="knopka01" value="Вход" onclick="enter()"></input>
+                        <input type="text"></input>
                     </div>
-                <div class="Column"></div>
-            </div>
+                    <div class="Column"></div>
+                </div>
+
+
+                <div class="Row" style="height:40px">
+                    <div class="Column" style="text-align:left; width:25%"></div>
+                    <div class="Column Small_text">
+                        <input type="password"></input>
+                    </div>
+                    <div class="Column"></div>
+                </div>
+
+                <div class="Row" style="height:40px">
+                    <div class="Column" style="text-align:left; width:25%"></div>
+                        <div class="Column Small_text">
+                            <input id="enter_b" type="submit" class="b_style1" value="Вход" onclick="enter_b()"></input>
+                        </div>
+                    <div class="Column"></div>
+                </div>
+            </form>
         </div>
 
         <script>
-            function enter() {
+            function enter_b() {
                 console.log('enter')
                 var en_b = document.getElementById('enter_b');
             }
