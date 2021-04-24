@@ -1,13 +1,17 @@
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
 
 from . import views
 
 app_name = 'image_processing'
 urlpatterns = [
-    path('',            views.category_select,                name='index'),
-    path('categories/', views.category_select,                name='category_select'),
-    path('<int:pk>/',   views.category,                       name='category'),
-    path('nn/',         views.nn,                             name='nn'),
+    path('',            views.nn_select, name='index'),
+    path('nns/',        views.nn_select, name='nn_select'),
+
+    path('nn/<int:pk>/',views.nn_detail, name='nn_detail'),
+    path('nn/images_preview/<int:pk>/',
+         views.nn_images_preview,
+         name='nn_images_preview'),
+    path('nn/add_category/<int:pk>/',
+         views.nn_add_category,
+         name='nn_add_category'),
 ]

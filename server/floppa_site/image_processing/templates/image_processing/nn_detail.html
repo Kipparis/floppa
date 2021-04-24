@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Floppa*</title>
+        <!-- <script src="index.js"></script> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'image_processing/nn_detail.css' %}">
+        <!-- <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800'rel='stylesheet' type='text/css'> -->
+    </head>
+
+    <body>
+        <div id="choose_window">
+            <div class="Row">
+                <div class="Column" style="text-align:left; width:25%">
+                    <img src="{% static 'image_processing/images/back-plane.png' %}" style="width:100%">
+                </div>
+                <div class="Column Floppa_title">
+                    <i>Floppa*</i>
+                </div>
+                <div class="Column"></div>
+            </div>
+
+            <div class="Row" style="height:100px;width:100%">
+                <div class="Column center_b"></div>
+                <div class="Column center_b">
+                    <a id="b1" class="knopka01" value="Проекты" onclick=b1() href="{% url 'image_processing:nn_select' %}">Проекты</a>
+                </div>
+                <div class="Column center_b">
+                    <input id="b2" type="button" class="knopka01" value="Информация" onclick="b2()"></input>
+                </div>
+                <div class="Column center_b">
+                    <a id="b3" href="{% url 'image_processing:nn_images_preview' nn.pk %}" class="knopka01" onclick="b3()">Данные</a>
+                </div>
+                <div class="Column center_b">
+                    <a id="b4" href="{% url 'image_processing:nn_add_category' nn.pk %}" class="knopka01" onclick="b4()">Классы</a>
+                </div>
+                <div class="Column center_b">
+                    <input id="b5" type="button" class="knopka01" value="Использование" onclick="b5()"></input>
+                </div>
+                <div class="Column center_b"></div>
+            </div>
+
+            <div class="Row" style="height:40px;width:100%"></div>
+
+            <div class="Row" style="height:40px;width:100%">
+                <div class="Column"></div>
+                <div class="Column t_monts" style="text-align:center;">
+                    <b class="t_monts">Информация о состянии системы:</b>
+                </div>
+                <div class="Column" style="text-align:center;">
+                    <x class="t_monts">Классы, готовые к использованию системой:</x>
+                </div>
+                <div class="Column"></div>
+            </div>
+
+            <div class="Row" style="height:40px;width:100%"></div>
+
+            <div class="Row" style="height:40px;width:100%">
+                <div class="Column" style="text-align:left;"></div>
+                <div class="Column t_monts" style="text-align:center;">
+                    <x class="t_monts">На сервер загружено {{ images_qty }} фотографий, из их {{ parsed_images_qty }} обработаны и готовы к использованию для обучения модели.</x>
+                </div>
+                <div class="Column" style="text-align:left;">
+                    {% if categories %}
+                    <ul type="decimal">
+                        {% for category in categories %}
+                        <li class="t_monts">{{ category.name }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="Column" style="text-align:left;"></div>
+            </div>
+        </div>
+
+        <script>
+            function b1() {
+                console.log('b1')
+            }
+            function b2() {
+                console.log('b2')
+            }
+            function b3() {
+                console.log('b3')
+            }
+            function b4() {
+                console.log('b4')
+            }
+            function b5() {
+                console.log('b5')
+            }
+        </script>
+    </body>
+</html>

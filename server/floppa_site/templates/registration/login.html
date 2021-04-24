@@ -1,28 +1,80 @@
-{% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+<!DOCTYPE html>
 
-{% if next %}
-  {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-  {% else %}
-    <p>Please login to see this page.</p>
-  {% endif %}
-{% endif %}
+{% load static %}
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  <table>
-    <tr>
-      <td>{{ form.username.label_tag }}</td>
-      <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.password.label_tag }}</td>
-      <td>{{ form.password }}</td>
-    </tr>
-  </table>
-  <input type="submit" value="login" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Floppa*</title>
+        <!-- <link rel="stylesheet" type="text/css" href="1.css"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'image_processing/login.css' %}">
+    </head>
+
+    <body>
+        <div id="login_window">
+            <div class="Row">
+                <div class="Column" style="text-align:left; width:25%">
+                    <!-- <img src="../pic/back&#45;plane.png" style="width:100%"> -->
+                    <img src="{% static 'image_processing/images/back-plane.png' %}" style="width:100%">
+                </div>
+                <div class="Column Floppa_title">
+                    <i>Floppa*</i>
+                </div>
+                <div class="Column"></div>
+            </div>
+
+            <div class="Row" style="height:180px"></div>
+
+            <div class="Row" style="height:40px">
+                <div class="Column" style="text-align:left; width:25%"></div>
+                <div class="Column Big_text">
+                    Авторизация
+                </div>
+                <div class="Column"></div>
+            </div>
+
+            <div class="Row" style="height:40px">
+                <div class="Column" style="text-align:left; width:25%"></div>
+                <div class="Column Small_text">
+                    Введите ваши регистрационные данные для входа в систему.
+                </div>
+                <div class="Column"></div>
+            </div>
+            <div class="Row" style="height:20px"></div>
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="Row" style="height:40px">
+                    <div class="Column" style="text-align:left; width:25%"></div>
+                    <div class="Column Small_text">
+                    <td>{{ form.username }}</td>
+                    </div>
+                    <div class="Column"></div>
+                </div>
+
+                <div class="Row" style="height:40px">
+                    <div class="Column" style="text-align:left; width:25%"></div>
+                    <div class="Column Small_text">
+                        <td>{{ form.password }}</td>
+                    </div>
+                    <div class="Column"></div>
+                </div>
+
+                <div class="Row" style="height:40px">
+                    <div class="Column" style="text-align:left; width:25%"></div>
+                        <div class="Column Small_text">
+                            <input id="enter_b" type="submit" class="b_style1" value="Вход" onclick="enter_b()"></input>
+                            <input type="hidden" name="next" value="{{ next }}" />
+                        </div>
+                    <div class="Column"></div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            function enter_b() {
+                console.log('enter')
+                var en_b = document.getElementById('enter_b');
+            }
+        </script>
+    </body>
+</html>

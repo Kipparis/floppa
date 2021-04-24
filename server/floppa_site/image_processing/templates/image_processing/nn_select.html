@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Floppa*</title>
+        <!-- <link rel="stylesheet" type="text/css" href="2.css"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'image_processing/nn_select.css' %}">
+    </head>
+
+    <body>
+        <div id="choose_window">
+            <div class="Row">
+                <div class="Column" style="text-align:left; width:25%">
+                    <img src="{% static 'image_processing/images/back-plane.png' %}" style="width:100%">
+                </div>
+                <div class="Column Floppa_title">
+                    <i>Floppa*</i>
+                </div>
+                <div class="Column"></div>
+            </div>
+
+            <div class="Row" style="height:100px"></div>
+
+            <div class="Row">
+                <div class="Column" style="height:40px;width:25%"></div>
+                <div class="Column Big_text">
+                    Выберите тип классификатора
+                </div>
+                <div class="Column"></div>
+            </div>
+
+            <div class="Row">
+                <div class="Column" style="height:40px;width:25%"></div>
+                <div class="Column Small_text">
+                    Уточнение от том, что такое классификатор.
+                </div>
+                <div class="Column"></div>
+            </div>
+
+            {% if NNs %}
+
+            <div class="Row" style="height:100px">
+                <div class="Column" style="width:70%">
+                    <div class="Row" style="height:100px">
+
+                        {% for nn in NNs %}
+                        <a class="Column" href="{% url 'image_processing:nn_detail' nn.pk %}">
+                        <div style="text-align:center;vertical-align:middle">
+                            <img src="{{ nn.thumbnail.url }}" alt="{{ nn.thumbail.url }}" style="width:60%;align:center"></img><br>
+                            <i>{{ nn.name }}</i>
+                        </div>
+                        </a>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <div class="Column"></div>
+            </div>
+            {% else %}
+                <p>no categories*</p>
+            {% endif %}
+
+            <div class="Row" style="height:40px">
+                <div class="Column" style="width:70%">
+                    <div class="Row" style="height:100px">
+                        <div class="Column" style="text-align:center;vertical-align:middle"></div>
+                        <div class="Column" style="text-align:center;vertical-align:middle"></div>
+                        <div class="Column" style="text-align:center;vertical-align:middle"></div>
+                        <div class="Column" style="text-align:center;vertical-align:middle"></div>
+                        <div class="Column" style="vertical-align:middle;">
+                            <input style="height:40px" id="add_more_b" type="button" class="knopka01" value="Добавить" onclick=add_more()></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="Column"></div>
+            </div>
+        </div>
+
+        <script>
+            function show_more() {
+                console.log('show more')
+                var shm_b = document.getElementById('show_more_b')
+
+            }
+            function add_more() {
+                console.log('add more');
+                var add_b = document.getElementById('add_more_b');
+            }
+        </script>
+    </body>
+</html>
