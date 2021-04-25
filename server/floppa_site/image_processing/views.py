@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
-from .models import Category
-from .models import NN
+from .models import Category,NN,NNImage,Category
 
 
 @login_required
@@ -44,10 +44,40 @@ def nn_images_preview(request, pk):
 
 
 @login_required
-def nn_add_category(request, pk):
+def add_category(request, pk):
+    if request.method == "POST":
+        category_name = request.POST['category_name']
+        nn = NN.objects.get(pk = pk)
+        category = Category(name = category_name)
+        category.save()
+        nn.categories.add(category)
+        context = {"nn": nn}
+        return render(request, 'image_processing/add_category.html', context)
+    else:
+        nn = NN.objects.get(pk = pk)
+        context = {"nn": nn}
+        return render(request, 'image_processing/add_category.html', context)
+
+
+@login_required
+def use(request, pk):
     nn = NN.objects.get(pk = pk)
-    context = {"nn": nn}
-    return render(request, 'image_processing/add_category.html', context)
+    # sql_set = nn.nnimage_set.values('category').annotate(total=Count("id")).order_by('category')
+    sql_set = (NNImage.objects.all()
+               .values('category__name')
+               .filter(nn = nn)
+               .annotate(total=Count("id"))
+               .filter(category__name__isnull=False, total__lt=100))
+    # sql_set = Category.objects.all().values('name').filter(nnimage__nn = nn).annotate(total=Count("id"))
+    print(sql_set)
+    # sql_set = nn.nnimage_set.values('category').annotate(total=Count("category"))
+    # nnimages = nn.nnimage_set.all()
+    context = {"nn": nn,
+               "sql_set": sql_set}
+    return render(request, 'image_processing/use.html', context)
+    # не готова: меньше 100 фотографий каждой категории
+    # готова к обучению: нейронка еще не обучена
+    # готова к использованию: нейронка обучена
 
 
 @login_required

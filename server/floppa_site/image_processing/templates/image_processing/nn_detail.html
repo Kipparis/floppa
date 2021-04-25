@@ -35,10 +35,10 @@
                     <a id="b3" href="{% url 'image_processing:nn_images_preview' nn.pk %}" class="knopka01" onclick="b3()">Данные</a>
                 </div>
                 <div class="Column center_b">
-                    <a id="b4" href="{% url 'image_processing:nn_add_category' nn.pk %}" class="knopka01" onclick="b4()">Классы</a>
+                    <a id="b4" href="{% url 'image_processing:add_category' nn.pk %}" class="knopka01" onclick="b4()">Классы</a>
                 </div>
                 <div class="Column center_b">
-                    <input id="b5" type="button" class="knopka01" value="Использование" onclick="b5()"></input>
+                    <a id="b5" href="{% url 'image_processing:use' nn.pk %}" class="knopka01" onclick="b5()">Использование</a>
                 </div>
                 <div class="Column center_b"></div>
             </div>

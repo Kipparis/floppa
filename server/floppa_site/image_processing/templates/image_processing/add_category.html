@@ -61,12 +61,15 @@
                 <div class="Column center_b"></div>
                 <div class="Column center_b">
                     <div class="Row" style="height:30px;width:100%">
+                        <form method="POST" type="submit" action="{% url 'image_processing:add_category' nn.pk %}">
+                        {% csrf_token %}
                         <div class="Column center_b">
-                            <input type="text"></input>
+                            <input name="category_name" type="text"></input>
                         </div>
                         <div class="Column center_b">
-                            <input id="b1" type="button" class="knopka01" value="Добавить" onclick=go_back()></input>
+                            <input id="b1" type="submit" class="knopka01" value="Добавить" onclick=go_back()></input>
                         </div>
+                        </form>
                     </div>
                 </div>
                 <div class="Column center_b"></div>

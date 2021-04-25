@@ -12,6 +12,9 @@ urlpatterns = [
          views.nn_images_preview,
          name='nn_images_preview'),
     path('nn/add_category/<int:pk>/',
-         views.nn_add_category,
-         name='nn_add_category'),
+         views.add_category,
+         name='add_category'),
+    path('nn/use/<int:pk>/',
+         views.use,
+         name='use'),
 ]
