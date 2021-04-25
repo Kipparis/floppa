@@ -41,46 +41,46 @@
             </div>
 
 
-            {% if sql_set %}
-            <div class="Row" style="height:40px;width:100%">
-                <div class="Column center_b t_monts">
-                    <x class="t_monts">Модель не готова к обучению (недостаточно данных для обработки)</x>
-                </div>
-            </div>
-            <ul>
+            {# {% if sql_set %} #}
+            {# <div class="Row" style="height:40px;width:100%"> #}
+            {#     <div class="Column center_b t_monts"> #}
+            {#         <x class="t_monts">Модель не готова к обучению (недостаточно данных для обработки)</x> #}
+            {#     </div> #}
+            {# </div> #}
+            {# <ul> #}
 
             {# недостатоно картинок в каждой категории повреждений #}
-            {% for entry in sql_set %}
-            <li> {{ entry.category__name|default:"none" }} | {{ entry.total }} </li>
-            {% endfor %}
-            </ul>
-            <div class="Row" style="height:10px;width:100%"></div>
-            <div class="Row" style="height:40px;width:100%">
-                <div class="Column center_b"></div>
-                <div class="Column center_b">
-                    <input id="b1" type="button" class="knopka01" value="Перейти к добавлению данных" onclick=go_back()></input>
-                </div>
-                <div class="Column center_b"></div>
-            </div>
-            {% else %}
+            {# {% for entry in sql_set %} #}
+            {# <li> {{ entry.nnimagemarkup__category__name|default:"none" }} | {{ entry.total }} </li> #}
+            {# {% endfor %} #}
+            {# </ul> #}
+            {# <div class="Row" style="height:10px;width:100%"></div> #}
+            {# <div class="Row" style="height:40px;width:100%"> #}
+            {#     <div class="Column center_b"></div> #}
+            {#     <div class="Column center_b"> #}
+            {#         <a id="b1" href="{% url 'image_processing:upload_files' nn.pk %}" class="knopka01" onclick=go_back()>Перейти к добавлению данных</a> #}
+            {#     </div> #}
+            {#     <div class="Column center_b"></div> #}
+            {# </div> #}
+            {# {% else %} #}
                 {# модель натренерованна #}
-                {% if nn.trained %}
-                <div class="Row" style="height:40px;width:100%">
-                    <div class="Column center_b t_monts">
-                        <x class="t_monts">Модель готова к обучению</x>
-                    </div>
-                </div>
-                <div class="Row" style="height:10px;width:100%"></div>
-                <div class="Row" style="height:40px;width:100%">
-                    <div class="Column center_b"></div>
-                    <div class="Column center_b">
-                        <input id="b1" type="button" class="knopka01" value="Начать обучение" onclick=go_back()></input>
-                    </div>
-                    <div class="Column center_b"></div>
-                </div>
+                {# {% if nn.trained %} #}
+                {# <div class="Row" style="height:40px;width:100%"> #}
+                {#     <div class="Column center_b t_monts"> #}
+                {#         <x class="t_monts">Модель готова к обучению</x> #}
+                {#     </div> #}
+                {# </div> #}
+                {# <div class="Row" style="height:10px;width:100%"></div> #}
+                {# <div class="Row" style="height:40px;width:100%"> #}
+                {#     <div class="Column center_b"></div> #}
+                {#     <div class="Column center_b"> #}
+                {#         <input id="b1" type="button" class="knopka01" value="Начать обучение" onclick=go_back()></input> #}
+                {#     </div> #}
+                {#     <div class="Column center_b"></div> #}
+                {# </div> #}
 
                 {# модель ненатренерованна #}
-                {% else %}
+            {#     {% else %} #}
                 <div class="Row" style="height:40px;width:100%">
                     <div class="Column center_b t_monts">
                         <x class="t_monts">Модель готова к использованию</x>
@@ -91,13 +91,24 @@
                     <div class="Column center_b"></div>
                     <div class="Column center_b">
                         <input id="b1" type="button" class="knopka01" value="Обучить повторно" onclick=go_back()></input>
-                        <input id="b1" type="button" class="knopka01" value="Открыть" onclick=go_back()></input>
+                        {# <input id="b1" type="button" class="knopka01" value="Открыть" onclick=go_back()></input> #}
+
+                        <form enctype="multipart/form-data" method="POST" action="{% url 'image_processing:check' nn.pk %}" >
+                            {% csrf_token %}
+                            <input type="file" id="myFiles" name="files" multiple></input>
+                            <input type="submit" value="Разметить"></input>
+                        </form>
+                        <form enctype="multipart/form-data" method="POST" action="{% url 'image_processing:apply_nn' nn.pk %}" >
+                            {% csrf_token %}
+                            <input type="file" id="myFiles" name="files" multiple></input>
+                            <input type="submit" value="Классифицировать"></input>
+                        </form>
                     </div>
                     <div class="Column center_b"></div>
                 </div>
 
-                {% endif %}
-            {% endif %}
+            {#     {% endif %} #}
+            {# {% endif %} #}
 
         </div>
 

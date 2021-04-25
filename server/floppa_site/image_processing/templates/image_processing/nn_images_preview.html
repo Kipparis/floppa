@@ -36,10 +36,12 @@
                 {% for row in images %}
                 <div class="Row" style="height:400px">
                     {% for image in row %}
+                    <a href="{% url 'image_processing:make_markup' nn.pk image.pk forloop.counter0 %}">
                     <div class="Column" style="text-align:center;vertical-align:middle">
                         <img src="{{ image.thumbnail.url }}" alt="{{ image.thumbail.url }}" style="width:60%;align:center"></img><br>
                         <i>{{ image.name }}</i> {{ image.trained }}
                     </div>
+                    </a>
                     {% endfor %}
                 </div>
                 {% endfor %}

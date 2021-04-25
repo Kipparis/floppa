@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 
+{% load static %}
+
 <html>
     <head>
         <meta charset="utf-8">
         <title>Floppa*</title>
-        <link rel="stylesheet" type="text/css" href="5.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'image_processing/make_markup.css' %}">
     </head>
 
     <body>
+        {# <p>{{ nn.pk }}</p> #}
+        {# <p>{{ img_pk }}</p> #}
+        {# <p>{{ idx }}</p> #}
+        {# <p>{{ json_arg }}</p> #}
+        {# {% if inc_json %} #}
+        {# <p>{{ inc_json }}</p> #}
+        {# {% endif %} #}
         <div id="choose_window">
             <div class="Row">
                 <div class="Column" style="text-align:left; width:25%">
-                    <img src="../pic/back-plane.png" style="width:100%;">
+                    <img src="{% static 'image_processing/images/back-plane.png' %}" style="width:100%">
                 </div>
                 <div class="Column Floppa_title">
                     <i>Floppa*</i>
@@ -21,13 +30,13 @@
 
             <div class="Row" style="height:40px;width:100%">
                 <div class="Column center_b">
-                    <input id="b1" type="button" class="knopka01" value="Назад" onclick=go_back()></input>
+                    <a id="b1" href="{% url 'image_processing:nn_images_preview' nn.pk %}" class="knopka01" onclick=go_back()>Назад</a>
                 </div>
                 <div class="Column center_b">
                     <select id='defect_option'>
-                        <option>Трещина</option>
-                        <option>Разлом</option>
-                        <option>Перелив</option>
+                        {% for cat in nn.categories.all %}
+                        <option>{{ cat.name }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="Column center_b">
@@ -37,8 +46,9 @@
                     <input id="b2" type="button" class="knopka01" onclick="to_delete()" value="Удалить"></input>
                 </div>
                 <div class="Column center_b">
-                    <form id='save_pic_form' method=post>
-                        <input id='hidden_input' type=hidden>
+                    <form id="save_pic_form" type="submit" method="POST" action="{% url 'image_processing:make_markup' nn.pk img_pk idx %}">
+                    {% csrf_token %}
+                        <input id="hidden_input" type="hidden" name='json_inc'>
                         <input id="b2" type="submit" class="knopka01" value="Сохранить">
                     </form>
                 </div>
@@ -53,7 +63,7 @@
 
             <div class="Row" style="height:40px">
                 <div class="Column">
-                    <input id='file1' type=hidden value='../pic/cat.jpg'>
+                    <input id='file1' type=hidden value='{{ json_arg }}'>
                     <input id='file2' type=hidden value='../pic/cross.png'>
                 </div>
                 <div class="Column">
@@ -100,6 +110,6 @@
                 console.log('zoom_out')
             }
         </script>
-        <script src="5.js"></script>
+        <script src="{% static 'image_processing/make_markup.js' %}"></script>
     </body>
 </html>

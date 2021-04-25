@@ -1,5 +1,5 @@
 body {
-  background-image: url('../pic/back-pic2.png');
+  background-image: url('images/back-pic2.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -25,17 +25,10 @@ body {
     /* background-color: white; /*Optional*/ */
 }
 
-<<<<<<< Updated upstream
-/* div {
-    border: 1px solid black;
-    padding: 3px;
-} */
-=======
 div {
     /* border: 1px solid black; */
     /* padding: 3px; */
 }
->>>>>>> Stashed changes
 
 canvas {
     border:1px solid #000000;

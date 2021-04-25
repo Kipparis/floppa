@@ -34,9 +34,6 @@ class NNImage(models.Model):
     nn        = models.ForeignKey(NN, on_delete=models.CASCADE)
     trained   = models.BooleanField()
 
-    # defect type
-    category  = models.ManyToManyField(Category)
-
     # detail name
     detail_name = models.CharField(max_length=64, null=True)
 
@@ -56,6 +53,9 @@ class NNImageMarkup(models.Model):
     y1 = models.PositiveSmallIntegerField()
     x2 = models.PositiveSmallIntegerField()
     y2 = models.PositiveSmallIntegerField()
+
+    # defect type
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.image.name}. ({self.x1},{self.y1}) ({self.x2},{self.y2})"

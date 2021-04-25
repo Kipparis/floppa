@@ -61,7 +61,7 @@
                 <div class="Column"></div>
             </div>
             {% else %}
-                <p>no categories*</p>
+                <p>no nns</p>
             {% endif %}
 
             <div class="Row" style="height:40px">
@@ -72,7 +72,18 @@
                         <div class="Column" style="text-align:center;vertical-align:middle"></div>
                         <div class="Column" style="text-align:center;vertical-align:middle"></div>
                         <div class="Column" style="vertical-align:middle;">
-                            <input style="height:40px" id="add_more_b" type="button" class="knopka01" value="Добавить" onclick=add_more()></input>
+
+                        <form method="POST" type="submit" action="{% url 'image_processing:nn_select' %}">
+                        {% csrf_token %}
+                        <div class="Column center_b">
+                            <input name="nn_name" type="text"></input>
+                        </div>
+                        <div class="Column center_b">
+                            {# <input id="b1" type="submit" class="knopka01" value="Добавить" onclick=go_back()></input> #}
+                            <input style="height:40px" id="add_more_b" type="submit" class="knopka01" value="Добавить" onclick=add_more()></input>
+                            {# <input id="b1" type="submit" class="knopka01" value="Добавить" onclick=go_back()></input> #}
+                        </div>
+                        </form>
                         </div>
                     </div>
                 </div>
