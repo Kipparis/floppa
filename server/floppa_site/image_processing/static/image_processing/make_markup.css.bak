@@ -25,6 +25,11 @@ body {
     /* background-color: white; /*Optional*/ */
 }
 
+div {
+    /* border: 1px solid black; */
+    /* padding: 3px; */
+}
+
 canvas {
     border:1px solid #000000;
 }

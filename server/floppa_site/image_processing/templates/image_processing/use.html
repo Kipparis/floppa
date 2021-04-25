@@ -42,16 +42,16 @@
 
 
             {# {% if sql_set %} #}
-            <div class="Row" style="height:40px;width:100%">
-                <div class="Column center_b t_monts">
-                    <x class="t_monts">Модель не готова к обучению (недостаточно данных для обработки)</x>
-                </div>
-            </div>
-            <ul>
+            {# <div class="Row" style="height:40px;width:100%"> #}
+            {#     <div class="Column center_b t_monts"> #}
+            {#         <x class="t_monts">Модель не готова к обучению (недостаточно данных для обработки)</x> #}
+            {#     </div> #}
+            {# </div> #}
+            {# <ul> #}
 
             {# недостатоно картинок в каждой категории повреждений #}
             {# {% for entry in sql_set %} #}
-            {# <li> {{ entry.category__name|default:"none" }} | {{ entry.total }} </li> #}
+            {# <li> {{ entry.nnimagemarkup__category__name|default:"none" }} | {{ entry.total }} </li> #}
             {# {% endfor %} #}
             {# </ul> #}
             {# <div class="Row" style="height:10px;width:100%"></div> #}
@@ -95,7 +95,6 @@
 
                         <form enctype="multipart/form-data" method="POST" action="{% url 'image_processing:check' nn.pk %}" >
                             {% csrf_token %}
-                            <input type="file" id="myFile" name="file"></input>
                             <input type="file" id="myFiles" name="files" multiple></input>
                             <input type="submit"></input>
                         </form>

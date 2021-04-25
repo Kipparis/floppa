@@ -6,7 +6,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 
-from .models import Category,NN,NNImage,Category
+from .models import Category,NN,NNImage,Category,NNImageMarkup
+
+from pathlib import Path
 
 
 @login_required
@@ -69,10 +71,10 @@ def use(request, pk):
     nn = NN.objects.get(pk = pk)
     # sql_set = nn.nnimage_set.values('category').annotate(total=Count("id")).order_by('category')
     sql_set = (NNImage.objects.all()
-               .values('category__name')
+               .values('nnimagemarkup__category__name')
                .filter(nn = nn)
                .annotate(total=Count("id"))
-               .filter(category__name__isnull=False, total__lt=100))
+               .filter(nnimagemarkup__category__name__isnull=False, total__lt=100))
     # sql_set = Category.objects.all().values('name').filter(nnimage__nn = nn).annotate(total=Count("id"))
     print(sql_set)
     # sql_set = nn.nnimage_set.values('category').annotate(total=Count("category"))
@@ -89,7 +91,32 @@ def make_markup(request, pk, img_pk, idx):
                           "paths": [[img.thumbnail.url, img.trained]
                                     for img in nn.nnimage_set.all().order_by('trained')]})
     context = {"nn": nn,
-               "json_arg": to_send}
+               "json_arg": to_send,
+               "img_pk": img_pk,
+               "idx": idx}
+
+    if request.method == "POST":
+        context["inc_json"] = request.POST['json_inc']
+        json_string = request.POST['json_inc']
+        inc_dict = json.loads(json_string)
+        for key, val in inc_dict.items():
+            name = Path(key).name
+            print("nameeeeee:", name)
+            image = NNImage.objects.get(name = Path(key).stem.replace("_", " "))
+            if image.trained:
+                continue
+            for defect in val:
+                cat = Category.objects.get(name = defect['tag'])
+                defect_coords = NNImageMarkup(image = image,
+                                              x1 = defect['x1'],
+                                              x2 = defect['x2'],
+                                              y1 = defect['y1'],
+                                              y2 = defect['y2'],
+                                              category = cat)
+                defect_coords.save()
+            image.trained = True
+            image.save()
+
     return render(request, 'image_processing/make_markup.html', context)
 
 
@@ -103,17 +130,21 @@ def upload_files(request, pk):
 @login_required
 def check(request, pk):
     if request.method == "POST":
-        uploaded_contents = request.FILES['file'].read()
         nn                = NN.objects.get(pk = pk)
-        print(request.FILES['file'])
+        # add images to existing
+        files = request.FILES.getlist('files')
         print(request.FILES.getlist('files'))
-        context           = {"nn": nn,
-                             "single_file": request.FILES['file'],
-                             "multiple_files": ", ".join(str(fl) for fl in request.FILES.getlist('files'))}
-        # return render(request, 'image_processing/test.html', context)
-        # return HttpResponse(request, 'hehe')
-        # return HttpResponseRedirect('/floppa/')   # works
-        return render(request, 'image_processing/test_nn.html', context)
+        for fl in files:
+            print(fl.name)
+            image = NNImage(name = fl.name, thumbnail = fl, nn=nn, trained=False)
+            image.save()
+        num_in_rows = 7
+        images = []
+        for i, image in enumerate(nn.nnimage_set.all().order_by('trained')):
+            if (i % num_in_rows) == 0: images.append([])
+            images[-1].append(image)
+        context = {"nn": nn, "images": images}
+        return render(request, 'image_processing/nn_images_preview.html', context)
     else:
         return HttpResponse(request, '<h3>not implemented yet</h3>')
 

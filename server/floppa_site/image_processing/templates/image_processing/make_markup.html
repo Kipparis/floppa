@@ -10,7 +10,13 @@
     </head>
 
     <body>
-        {{ json_arg }}
+        {# <p>{{ nn.pk }}</p> #}
+        {# <p>{{ img_pk }}</p> #}
+        {# <p>{{ idx }}</p> #}
+        {# <p>{{ json_arg }}</p> #}
+        {# {% if inc_json %} #}
+        {# <p>{{ inc_json }}</p> #}
+        {# {% endif %} #}
         <div id="choose_window">
             <div class="Row">
                 <div class="Column" style="text-align:left; width:25%">
@@ -40,7 +46,11 @@
                     <input id="b2" type="button" class="knopka01" onclick="to_delete()" value="Удалить"></input>
                 </div>
                 <div class="Column center_b">
-                    <input id="b2" type="button" class="knopka01" onclick="to_save()" value="Сохранить"></input>
+                    <form id="save_pic_form" type="submit" method="POST" action="{% url 'image_processing:make_markup' nn.pk img_pk idx %}">
+                    {% csrf_token %}
+                        <input id="hidden_input" type="hidden" name='json_inc'>
+                        <input id="b2" type="submit" class="knopka01" value="Сохранить">
+                    </form>
                 </div>
             </div>
 
@@ -52,14 +62,20 @@
             </div>
 
             <div class="Row" style="height:40px">
-                <div class="Column"></div>
+                <div class="Column">
+                    <input id='file1' type=hidden value='{{ json_arg }}'>
+                    <input id='file2' type=hidden value='../pic/cross.png'>
+                </div>
                 <div class="Column">
                     <div class="Row">
                         <div class="Column center_b">
-                            <input id="b1" type="button" class="knopka01" value="<" onclick=prev_picture()></input>
+                            <input id="b1" type="button" class="knopka01" value="<" onclick=prev_picture()>
+                        </div>
+                        <div class="Column t_monts" style="text-align:center;vertical-align:center">
+                            <input id="counter" type="button" class="knopka01" value="">
                         </div>
                         <div class="Column center_b">
-                            <input id="b1" type="button" class="knopka01" value=">" onclick=next_picture()></input>
+                            <input id="b1" type="button" class="knopka01" value=">" onclick=next_picture()>
                         </div>
                     </div>
                 </div>
