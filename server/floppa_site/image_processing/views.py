@@ -6,6 +6,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 
+from django.conf import settings
+
 from .models import Category,NN,NNImage,Category,NNImageMarkup
 
 from pathlib import Path
@@ -13,6 +15,9 @@ from pathlib import Path
 
 @login_required
 def nn_select(request):
+    if request.method == "POST":
+        nn = NN.create_new(request.POST['nn_name'],
+                           settings.BASE_DIR/Path("images/floppa_in_bath.jpg"))
     NNs     = NN.objects.all()
     context = {'NNs': NNs}
     return render(request, 'image_processing/nn_select.html', context)
@@ -147,6 +152,20 @@ def check(request, pk):
         return render(request, 'image_processing/nn_images_preview.html', context)
     else:
         return HttpResponse(request, '<h3>not implemented yet</h3>')
+
+
+@login_required
+def apply_nn(request, pk):
+    if request.method == "POST":
+        files = request.FILES.getlist('files')
+        print(request.FILES.getlist('files'))
+        for fl in files:
+            print(fl.name)
+        # ret = func()
+        context = {"files": [fl.name for fl in files]}
+        return render(request, 'image_processing/nn_output.html', context)
+    else:
+        return HttpResponse(request, "use post")
 
 
 @login_required

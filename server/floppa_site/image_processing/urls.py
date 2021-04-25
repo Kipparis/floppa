@@ -26,4 +26,7 @@ urlpatterns = [
     path('nn/check/<int:pk>/',
          views.check,
          name="check"),
+    path('nn/apply_nn/<int:pk>/',
+         views.apply_nn,
+         name="apply_nn")
 ]

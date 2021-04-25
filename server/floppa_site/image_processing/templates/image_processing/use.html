@@ -96,7 +96,12 @@
                         <form enctype="multipart/form-data" method="POST" action="{% url 'image_processing:check' nn.pk %}" >
                             {% csrf_token %}
                             <input type="file" id="myFiles" name="files" multiple></input>
-                            <input type="submit"></input>
+                            <input type="submit" value="Разметить"></input>
+                        </form>
+                        <form enctype="multipart/form-data" method="POST" action="{% url 'image_processing:apply_nn' nn.pk %}" >
+                            {% csrf_token %}
+                            <input type="file" id="myFiles" name="files" multiple></input>
+                            <input type="submit" value="Классифицировать"></input>
                         </form>
                     </div>
                     <div class="Column center_b"></div>
