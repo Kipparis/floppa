@@ -157,12 +157,13 @@ def check(request, pk):
 @login_required
 def apply_nn(request, pk):
     if request.method == "POST":
+        nn            = NN.objects.get(pk = pk)
         files = request.FILES.getlist('files')
         print(request.FILES.getlist('files'))
         for fl in files:
             print(fl.name)
         # ret = func()
-        context = {"files": [fl.name for fl in files]}
+        context = {"nn": nn,"files": [fl.name for fl in files]}
         return render(request, 'image_processing/nn_output.html', context)
     else:
         return HttpResponse(request, "use post")
