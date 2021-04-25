@@ -57,7 +57,7 @@ def add_category(request, pk):
     if request.method == "POST":
         category_name = request.POST['category_name']
         nn = NN.objects.get(pk = pk)
-        category, created = Category.get_or_create(name = category_name)
+        category, created = Category.objects.get_or_create(name = category_name)
         category.save()
         nn.categories.add(category)
         context = {"nn": nn}
