@@ -64,16 +64,21 @@
                 <div class="Column"></div>
             </div>
 
-            <div class="Row" style="height:40px">
+            <div class="Row" style="height:30px"></div>
+
+            <div class="Row" style="height:30px">
                 <div class="Column" style="width:70%">
-                    <div class="Row" style="height:100px">
-                        <div class="Column" style="text-align:center;vertical-align:middle"></div>
-                        <div class="Column" style="text-align:center;vertical-align:middle"></div>
-                        <div class="Column" style="text-align:center;vertical-align:middle"></div>
-                        <div class="Column" style="text-align:center;vertical-align:middle"></div>
-                        <div class="Column" style="vertical-align:middle;">
-                            <input style="height:40px" id="add_more_b" type="button" class="b_style1" value="Добавить" onclick=add_more()></input>
-                        </div>
+                    <div class="Row" style="height:30px">
+                        <form id='make_new_neiro' type='post' action='#' class="Row">
+                            <div class="Column" style="vertical-align:middle">
+                                <input style="height:30px" id="title_new" type="text">
+                            </div>
+                            <div class="Column" style="vertical-align:middle;">
+                                    <input style="height:40px" id="add_more_b" type="submit" class="b_style1" value="Add" onclick=add_more()>
+                            </div>
+                            <div class="Column" style="text-align:center;vertical-align:middle"></div>
+                            <div class="Column" style="text-align:center;vertical-align:middle"></div>
+                        </form>
                     </div>
                 </div>
                 <div class="Column"></div>
