@@ -1,9 +1,9 @@
 cross = new Image();
-cross.src = document.getElementById('file2').value;
-// cross.src = '../pic/cross.png';
+// cross.src = document.getElementById('file2').value;
+cross.src = '../pic/cross.png';
 
-files_arr = JSON.parse(document.getElementById('file1').value); //arr for path and flag
-// files_arr = {current_idx:0,paths:[['../pic/cat.jpg',false],['../pic/cat2.jpg',false],['../pic/cat3.jpg',true],['../pic/cat4.jpg',false]]}
+// files_arr = JSON.parse(document.getElementById('file1').value); //arr for path and flag
+files_arr = {current_idx:0,paths:[['../pic/cat.jpg',false],['../pic/cat2.jpg',false],['../pic/cat3.jpg',true],['../pic/cat4.jpg',false]]}
 curr_idx = files_arr.current_idx;
 paths = files_arr.paths;
 
@@ -159,6 +159,9 @@ document.getElementById('save_pic_form').onsubmit = (function(e) {
 
    console.log('hid input');
    console.log(document.getElementById('hidden_input').value);
+
+
+   document.getElementById('save_pic_form').submit();
 
 
    //
