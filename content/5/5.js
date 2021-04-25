@@ -1,16 +1,18 @@
-base_image_name = '../pic/cat.jpg';
+base_image_name = document.getElementById('file1').value;
+//'../pic/cat.jpg';
+// console.log(base_image_name)
 base_image = new Image();
 base_image.src = base_image_name;
 
 cross = new Image();
-cross.src = '../pic/cross.png';
+cross.src = document.getElementById('file2').value;
+//'../pic/cross.png';
 
 function make_base() {
     var canvas = document.getElementById('canvas'),
     context = canvas.getContext('2d');
     base_image = new Image();
-    base_image.src = '../pic/cat.jpg';
-
+    base_image.src = base_image_name;
     base_image.onload = function() {
         canvas.width = base_image.width;
         canvas.height = base_image.height;
@@ -95,14 +97,17 @@ function to_delete() {mode = 'to_delete';}
 
 function to_save() {
     var json = JSON.stringify([base_image_name, razmetka])
-    json = [json];
-    var blob1 = new Blob(json, { type: "text/plain;charset=utf-8" });
-    var url = window.URL || window.webkitURL;
-    link = url.createObjectURL(blob1);
-    var a = document.createElement("a");
-    a.download = base_image_name+'.json';
-    a.href = link;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    var res = document.getElementById('hidden_input');
+    res.value = json
+    console.log(res.value)
+    // json = [json];
+    // var blob1 = new Blob(json, { type: "text/plain;charset=utf-8" });
+    // var url = window.URL || window.webkitURL;
+    // link = url.createObjectURL(blob1);
+    // var a = document.createElement("a");
+    // a.download = base_image_name+'.json';
+    // a.href = link;
+    // document.body.appendChild(a);
+    // a.click();
+    // document.body.removeChild(a);
 }

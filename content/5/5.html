@@ -37,7 +37,10 @@
                     <input id="b2" type="button" class="knopka01" onclick="to_delete()" value="Удалить"></input>
                 </div>
                 <div class="Column center_b">
-                    <input id="b2" type="button" class="knopka01" onclick="to_save()" value="Сохранить"></input>
+                    <form method=post onsubmit="return to_save()">
+                        <input id='hidden_input' type=hidden>
+                        <input id="b2" type="submit" class="knopka01" value="Сохранить">
+                    </form>
                 </div>
             </div>
 
@@ -49,7 +52,10 @@
             </div>
 
             <div class="Row" style="height:40px">
-                <div class="Column"></div>
+                <div class="Column">
+                    <input id='file1' type=hidden value='../pic/cat.jpg'>
+                    <input id='file2' type=hidden value='../pic/cross.png'>
+                </div>
                 <div class="Column">
                     <div class="Row">
                         <div class="Column center_b">
