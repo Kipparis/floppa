@@ -1,12 +1,15 @@
-base_image_name = document.getElementById('file1').value;
-//'../pic/cat.jpg';
-// console.log(base_image_name)
-base_image = new Image();
-base_image.src = base_image_name;
-
 cross = new Image();
 cross.src = document.getElementById('file2').value;
-//'../pic/cross.png';
+
+files_arr = JSON.parse(document.getElementById('file1').value); //arr for path and flag
+curr_idx = files_arr.current_idx;
+paths = files_arr.paths;
+
+base_image = new Image();
+base_image.src = paths[curr_idx];
+
+var index_of_max = document.getElementById('sasha');
+index_of_max.value = curr_idx.toString() + '/' + (paths.length-1).toString();
 
 function make_base() {
     var canvas = document.getElementById('canvas'),
@@ -20,8 +23,8 @@ function make_base() {
         context.drawImage(base_image, 0, 0);
     }
 }
-
 make_base();
+
 let isDrawing = false;
 let x = 0;
 let y = 0;
@@ -91,15 +94,39 @@ window.addEventListener('mouseup', e => {
     }
 });
 
-function to_draw() {mode = 'to_draw';}
+function to_draw() {
+    mode = 'to_draw';
+}
 
-function to_delete() {mode = 'to_delete';}
+function to_delete() {
+    mode = 'to_delete';
+}
+
+function prev_picture() {
+    if (curr_idx > 0) {
+        curr_idx -= 1;
+        base_image = new Image();
+        base_image.src = paths[curr_idx];
+        var index_of_max = document.getElementById('sasha');
+        index_of_max.value = curr_idx.toString() + '/' + (paths.length-1).toString();
+    }
+}
+
+function next_picture() {
+    if (curr_idx < paths.length - 1) {
+        curr_idx += 1;
+        base_image = new Image();
+        base_image.src = paths[curr_idx];
+        var index_of_max = document.getElementById('sasha');
+        index_of_max.value = curr_idx.toString() + '/' + (paths.length-1).toString();
+    }
+}
 
 function to_save() {
-    var json = JSON.stringify([base_image_name, razmetka])
+    var json = JSON.stringify([base_image_name, razmetka]);
     var res = document.getElementById('hidden_input');
-    res.value = json
-    console.log(res.value)
+    res.value = json;
+    console.log(res.value);
     // json = [json];
     // var blob1 = new Blob(json, { type: "text/plain;charset=utf-8" });
     // var url = window.URL || window.webkitURL;
