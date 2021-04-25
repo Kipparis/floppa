@@ -1,5 +1,48 @@
+
+#drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  width: 480px;
+  font-family: sans-serif;
+  margin: 100px auto;
+  padding: 20px;
+}
+#drop-area.highlight {
+  border-color: purple;
+}
+p {
+  margin-top: 0;
+}
+.my-form {
+  margin-bottom: 10px;
+}
+#gallery {
+  margin-top: 10px;
+}
+#gallery img {
+  width: 150px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.button {
+  display: inline-block;
+  padding: 10px;
+  background: #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.button:hover {
+  background: #ddd;
+}
+#fileElem {
+  display: none;
+}
+
+
 body {
-  background-image: url('../pic/back-pic2.png');
+  background-image: url('images/back-pic2.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -25,23 +68,29 @@ body {
     /* background-color: white; /*Optional*/ */
 }
 
-<<<<<<< Updated upstream
+.table_for_class {
+    border-radius: 5px;
+    background-color:white;
+    border:black solid;
+}
+
 /* div {
     border: 1px solid black;
     padding: 3px;
 } */
-=======
-div {
-    /* border: 1px solid black; */
-    /* padding: 3px; */
-}
->>>>>>> Stashed changes
 
 canvas {
     border:1px solid #000000;
 }
 
 .pic_box {
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    display: none;
+}
+
+.aft-drop {
     text-align: center;
     vertical-align: middle;
     margin: auto;
@@ -57,34 +106,14 @@ canvas {
     color: #195a5e;
 }
 
-/* .Big_text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 40px;
-    font-weight: 100;
-    text-align: center;
-    vertical-align: bottom;
-    color: #195a5e;
-}
-
-.Small_text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 100;
-    text-align: center;
-    color: #195a5e;
-} */
-
 .t_monts {
     font-family: 'Montserrat', sans-serif;
     font-size:24px;
     font-weight: 100;
     border-width: thin;
-    margin-left:10%;
-    /* padding-left:10%; */
 }
 
 input[type=text] {
-    /* text-align: center; */
     border-radius: 5px;
     display: block;
     margin: auto;
@@ -98,30 +127,18 @@ input[type=text] {
     border-width: thin;
 }
 
-/* input[type=text]:focus {
-  background-color: lightblue;
-} */
-
-select {
-    display: block;
-    margin: auto;
-    width: 80%;
-    height: 100%;
-    font-size: 20px;
-    text-decoration: none;
-    text-shadow: 0 1px rgba(255,255,255,.2), 0 -1px rgba(0,0,0,.8);
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    background: #195a5e;
-    color: white;
+.center_b {
+    vertical-align: middle;
+    text-align: center;
+    /* margin-left: 80%; */
 }
 
-.center_b {
-    /* vertical-align: middle; */
-    /* text-align: center; */
-    /* margin-left: 80%; */
-    /* text-align: center; */
+.drop {
+    width:50%;
+    height:250px;
+    border-radius: 10px;
+    background:white;
+    margin-left:25%;
 }
 
 .knopka01 {

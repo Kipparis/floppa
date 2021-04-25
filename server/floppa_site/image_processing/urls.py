@@ -17,4 +17,13 @@ urlpatterns = [
     path('nn/use/<int:pk>/',
          views.use,
          name='use'),
+    path('nn/make_markup/<int:pk>/<int:img_pk>/<int:idx>/',
+         views.make_markup,
+         name='make_markup'),
+    path('nn/upload_files/<int:pk>/',
+         views.upload_files,
+         name='upload_files'),
+    path('nn/check/<int:pk>/',
+         views.check,
+         name="check"),
 ]
